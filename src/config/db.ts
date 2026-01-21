@@ -1,0 +1,23 @@
+// src/config/db.ts
+import mongoose from 'mongoose';
+import { env } from './env';
+
+export const connectDB = async (): Promise<void> => {
+  if (!env.MONGO_URI) {
+    console.error('❌ MONGO_URI is not defined in environment variables');
+    process.exit(1);
+  }
+
+  try {
+    await mongoose.connect(env.MONGO_URI, {
+      // optional options for better compatibility
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    } as mongoose.ConnectOptions);
+
+    console.log('✅ MongoDB connected');
+  } catch (error) {
+    console.error('❌ MongoDB connection failed:', error);
+    process.exit(1);
+  }
+};
