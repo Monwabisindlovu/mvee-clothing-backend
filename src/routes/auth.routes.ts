@@ -1,6 +1,7 @@
+// src/routes/auth.routes.ts
 import { Router } from 'express';
-import { login, me } from '../controllers/auth.controller';
-import { authMiddleware } from '../middleware/auth.middleware';
+import { login, me, registerAdmin } from '../controllers/auth.controller';
+import { protect, admin } from '../middleware/auth.middleware';
 
 const router = Router();
 
@@ -9,7 +10,10 @@ const router = Router();
 // Admin login
 router.post('/login', login);
 
+// Register a new admin (temporary)
+router.post('/register-admin', registerAdmin);
+
 // Get logged-in admin info
-router.get('/me', authMiddleware, me);
+router.get('/me', protect, me); // <-- updated
 
 export default router;

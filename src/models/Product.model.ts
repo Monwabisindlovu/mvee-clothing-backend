@@ -56,7 +56,13 @@ const productColorSchema = new Schema<ProductColor>(
 
 const productSchema = new Schema<IProduct>(
   {
-    type: { type: String, default: 'product' },
+    // ✅ Updated type field
+    type: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
     name: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
     description: { type: String },

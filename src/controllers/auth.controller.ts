@@ -11,6 +11,38 @@ interface AuthRequest extends Request {
 }
 
 /**
+ * Register a new admin (temporary endpoint)
+ * POST /api/auth/register-admin
+ */
+export const registerAdmin = async (req: Request, res: Response) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // Check if user already exists
+    const existing = await User.findOne({ email });
+    if (existing) return res.status(400).json({ message: 'Admin already exists' });
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const admin = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      role: 'admin',
+    });
+
+    res.status(201).json({
+      message: 'Admin created successfully',
+      admin: { id: admin._id, name: admin.name, email: admin.email, role: admin.role },
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to create admin' });
+  }
+};
+
+/**
  * Admin login only
  * POST /api/auth/login
  */
@@ -22,7 +54,8 @@ export const login = async (req: Request, res: Response) => {
     const user = await User.findOne({ email, role: 'admin' });
     if (!user) return res.status(401).json({ message: 'Invalid credentials' });
 
-    const isMatch = await user.comparePassword(password);
+    // Use bcrypt directly to compare
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: 'Invalid credentials' });
 
     if (!env.JWT_SECRET) {

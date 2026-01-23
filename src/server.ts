@@ -10,12 +10,14 @@ const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
+    // Connect to MongoDB
     await connectDB();
     console.log('✅ Connected to MongoDB');
 
-    // Seed admin on startup
+    // Ensure admin exists on startup
     await seedAdmin();
 
+    // Start Express server
     app.listen(PORT, () => {
       console.log(`🚀 Server running on http://localhost:${PORT}`);
     });

@@ -1,3 +1,4 @@
+// src/routes/product.routes.ts
 import { Router } from 'express';
 import upload from '../middleware/upload.middleware';
 import {
@@ -8,7 +9,7 @@ import {
   updateProduct,
   deleteProduct,
 } from '../controllers/product.controller';
-import { adminAuth } from '../middleware/auth.middleware';
+import { protect, admin } from '../middleware/auth.middleware';
 
 const router = Router();
 
@@ -18,20 +19,20 @@ const router = Router();
 router.get('/', getAllProducts);
 
 // Get product by slug (for storefront)
-router.get('/:slug', getProductBySlug);
-
-// Optional: get product by ID (admin usage)
-router.get('/id/:id', adminAuth, getProductById);
+router.get('/slug/:slug', getProductBySlug);
 
 /* ------------------------------ ADMIN ROUTES ------------------------------- */
 
+// Get product by ID (admin)
+router.get('/:id', protect, admin, getProductById);
+
 // Create product (with images)
-router.post('/', adminAuth, upload.array('images', 5), createProduct);
+router.post('/', protect, admin, upload.array('images', 5), createProduct);
 
 // Update product
-router.put('/:id', adminAuth, upload.array('images', 5), updateProduct);
+router.put('/:id', protect, admin, upload.array('images', 5), updateProduct);
 
 // Delete product
-router.delete('/:id', adminAuth, deleteProduct);
+router.delete('/:id', protect, admin, deleteProduct);
 
 export default router;

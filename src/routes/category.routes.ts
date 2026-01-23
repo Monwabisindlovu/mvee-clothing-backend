@@ -1,3 +1,4 @@
+// src/routes/category.routes.ts
 import { Router } from 'express';
 import {
   getCategories,
@@ -6,7 +7,7 @@ import {
   updateCategory,
   deleteCategory,
 } from '../controllers/category.controller';
-import { authMiddleware, adminAuth } from '../middleware/auth.middleware';
+import { protect, admin } from '../middleware/auth.middleware';
 
 const router = Router();
 
@@ -17,7 +18,7 @@ const router = Router();
 // Get all categories
 router.get('/', getCategories);
 
-// Get single category
+// Get single category by ID
 router.get('/:id', getCategoryById);
 
 /* =========================
@@ -25,7 +26,7 @@ router.get('/:id', getCategoryById);
 ========================= */
 
 // Protect everything below this line
-router.use(authMiddleware, adminAuth);
+router.use(protect, admin);
 
 // Create category
 router.post('/', createCategory);

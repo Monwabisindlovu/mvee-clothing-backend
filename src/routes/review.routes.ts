@@ -1,3 +1,4 @@
+// src/routes/review.routes.ts
 import { Router } from 'express';
 import {
   getReviews,
@@ -6,20 +7,29 @@ import {
   updateReview,
   deleteReview,
 } from '../controllers/review.controller';
-import { authMiddleware } from '../middleware/auth.middleware';
-import { adminMiddleware } from '../middleware/admin.middleware';
+import { protect, admin } from '../middleware/auth.middleware';
 
 const router = Router();
 
-// Public routes
+/* ------------------------------ PUBLIC ROUTES ------------------------------ */
+
+// Get all reviews
 router.get('/', getReviews);
+
+// Get a single review by ID
 router.get('/:id', getReviewById);
 
-// Authenticated users
-router.post('/', authMiddleware, createReview);
+/* ------------------------------ AUTHENTICATED ROUTES ----------------------- */
 
-// Admin routes
-router.patch('/:id', authMiddleware, adminMiddleware, updateReview);
-router.delete('/:id', authMiddleware, adminMiddleware, deleteReview);
+// Create a review (any logged-in user)
+router.post('/', protect, createReview);
+
+/* ------------------------------ ADMIN ROUTES -------------------------------- */
+
+// Update review
+router.patch('/:id', protect, admin, updateReview);
+
+// Delete review
+router.delete('/:id', protect, admin, deleteReview);
 
 export default router;

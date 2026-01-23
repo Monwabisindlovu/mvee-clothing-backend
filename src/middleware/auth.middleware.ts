@@ -4,15 +4,18 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import User, { IUser } from '../models/User.model';
 import { env } from '../config/env';
 
-// Extend Express Request to include authenticated user
+/**
+ * Extend Express Request to include authenticated user
+ */
 export interface AuthRequest extends Request {
   user?: IUser;
 }
 
 /**
- * Auth middleware: validates JWT and attaches user to request
+ * Middleware to protect routes
+ * Verifies JWT and attaches user to request
  */
-export const authMiddleware = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const protect = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -31,7 +34,7 @@ export const authMiddleware = async (req: AuthRequest, res: Response, next: Next
       return res.status(401).json({ message: 'Unauthorized: User not found' });
     }
 
-    req.user = user; // attach user to request
+    req.user = user;
     next();
   } catch (err) {
     console.error('Auth middleware error:', err);
@@ -40,15 +43,15 @@ export const authMiddleware = async (req: AuthRequest, res: Response, next: Next
 };
 
 /**
- * Admin middleware: checks if authenticated user is admin
- * Use after authMiddleware
+ * Middleware to allow only admin users
+ * Use AFTER protect middleware
  */
-export const adminAuth = (req: AuthRequest, res: Response, next: NextFunction) => {
+export const admin = (req: AuthRequest, res: Response, next: NextFunction) => {
   if (!req.user) {
     return res.status(401).json({ message: 'Unauthorized: Missing user' });
   }
 
-  if (!req.user.role || req.user.role !== 'admin') {
+  if (req.user.role !== 'admin') {
     return res.status(403).json({ message: 'Forbidden: Admins only' });
   }
 
