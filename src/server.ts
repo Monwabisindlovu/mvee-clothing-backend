@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 import app from './app.js';
 import { connectDB } from './config/db.js';
-import { seedAdmin } from './config/seedAdmin.js';
 
 dotenv.config();
 
@@ -13,8 +12,9 @@ const startServer = async () => {
     await connectDB();
     console.log('✅ Connected to MongoDB');
 
-    // Seed admin only in non-production environments
+    // Seed admin only in non-production environments using lazy import
     if (process.env.NODE_ENV !== 'production') {
+      const { seedAdmin } = await import('./config/seedAdmin.js');
       await seedAdmin();
     }
 
