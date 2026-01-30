@@ -15,6 +15,6 @@
     "sourceMap": true, // Generate source maps for debugging
     "removeComments": true // Remove comments in compiled JS
   },
-  "include": ["src"], // Compile everything under src/
+  "include": ["src/**/*"], // Compile everything under src/ including subfolders
   "exclude": ["node_modules", "dist"] // Exclude dependencies & previous builds
 }
