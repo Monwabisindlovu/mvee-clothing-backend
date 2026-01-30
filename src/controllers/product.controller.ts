@@ -1,8 +1,10 @@
 // src/controllers/product.controller.ts
+
 import { Request, Response } from 'express';
 import Product from '../models/Product.model.js';
-import slugify from 'slugify';
+import slugify from 'slugify'; // default import fixes TS2349
 import { v4 as uuidv4 } from 'uuid';
+// typings now available via @types/uuid
 
 /* ------------------------------ GET ALL PRODUCTS ----------------------------- */
 export const getAllProducts = async (_req: Request, res: Response) => {

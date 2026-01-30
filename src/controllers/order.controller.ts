@@ -3,7 +3,6 @@ import { Request, Response } from 'express';
 import Order from '../models/Order.model.js';
 import { generateWhatsAppLink } from '../utils/whatsapp.js';
 
-/* ------------------------------ CREATE NEW ORDER ---------------------------- */
 export const createOrder = async (req: Request, res: Response) => {
   try {
     const { customer_name, phone, address, items, notes } = req.body;

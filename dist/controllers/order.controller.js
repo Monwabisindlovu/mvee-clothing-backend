@@ -1,6 +1,5 @@
 import Order from '../models/Order.model.js';
 import { generateWhatsAppLink } from '../utils/whatsapp.js';
-/* ------------------------------ CREATE NEW ORDER ---------------------------- */
 export const createOrder = async (req, res) => {
     try {
         const { customer_name, phone, address, items, notes } = req.body;
