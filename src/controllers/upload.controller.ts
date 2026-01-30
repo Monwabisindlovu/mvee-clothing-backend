@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import cloudinary from '../config/cloudinary';
+import cloudinary from '../config/cloudinary.js';
 
 /**
  * Backend-handled upload: receives file via multer, uploads to Cloudinary

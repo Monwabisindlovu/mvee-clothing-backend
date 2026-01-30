@@ -1,7 +1,7 @@
 // src/controllers/order.controller.ts
 import { Request, Response } from 'express';
-import Order from '../models/Order.model';
-import { generateWhatsAppLink } from '../utils/whatsapp';
+import Order from '../models/Order.model.js';
+import { generateWhatsAppLink } from '../utils/whatsapp.js';
 
 /* ------------------------------ CREATE NEW ORDER ---------------------------- */
 export const createOrder = async (req: Request, res: Response) => {

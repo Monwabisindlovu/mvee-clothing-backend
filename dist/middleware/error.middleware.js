@@ -1,17 +1,17 @@
 /**
- * Error-handling middleware
- * This should be added after all routes in app.ts
+ * Global error-handling middleware
+ * Must be registered LAST in app.ts
  */
-export const errorMiddleware = (err, req, res, next) => {
-    console.error(err); // log the full error for debugging
-    const statusCode = err.status || 500; // default to 500 if not specified
-    const message = err.message || 'Internal Server Error';
-    // Optional: include validation errors if available
-    const errors = err.errors || undefined;
+export const errorHandler = (err, _req, res, _next) => {
+    const error = err;
+    console.error('❌ Error caught:', error);
+    const statusCode = error.status ?? 500;
+    const message = error.message ?? 'Internal Server Error';
     res.status(statusCode).json({
         success: false,
         status: statusCode,
         message,
-        errors,
+        errors: error.errors ?? null,
+        timestamp: new Date().toISOString(),
     });
 };

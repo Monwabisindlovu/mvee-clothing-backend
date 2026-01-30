@@ -1,6 +1,6 @@
 // src/routes/product.routes.ts
 import { Router } from 'express';
-import upload from '../middleware/upload.middleware';
+import upload from '../middleware/upload.middleware.js';
 import {
   getAllProducts,
   getProductBySlug,
@@ -8,8 +8,8 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
-} from '../controllers/product.controller';
-import { protect, admin } from '../middleware/auth.middleware';
+} from '../controllers/product.controller.js';
+import { protect, admin } from '../middleware/auth.middleware.js';
 
 const router = Router();
 

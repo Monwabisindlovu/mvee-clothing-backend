@@ -5,15 +5,15 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 
 // Routes
-import productRoutes from './routes/product.routes';
-import orderRoutes from './routes/order.routes';
-import authRoutes from './routes/auth.routes';
-import reviewRoutes from './routes/review.routes';
-import categoryRoutes from './routes/category.routes';
-import uploadRoutes from './routes/upload.routes'; // <-- add this
+import productRoutes from './routes/product.routes.js';
+import orderRoutes from './routes/order.routes.js';
+import authRoutes from './routes/auth.routes.js';
+import reviewRoutes from './routes/review.routes.js';
+import categoryRoutes from './routes/category.routes.js';
+import uploadRoutes from './routes/upload.routes.js';
 
 // Middleware
-import { errorHandler } from './middleware/error.middleware';
+import { errorHandler } from './middleware/error.middleware.js';
 
 dotenv.config();
 
@@ -58,7 +58,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
-app.use('/api/upload', uploadRoutes); // <-- mount upload routes
+app.use('/api/upload', uploadRoutes);
 
 /* =========================
    ERROR HANDLER (MUST BE LAST)

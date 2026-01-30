@@ -1,8 +1,8 @@
 // src/controllers/auth.controller.ts
 import { Request, Response } from 'express';
-import User, { IUser } from '../models/User.model';
+import User, { IUser } from '../models/User.model.js';
 import jwt from 'jsonwebtoken';
-import { env } from '../config/env';
+import { env } from '../config/env.js';
 import bcrypt from 'bcryptjs';
 
 // Extending Request type for TS

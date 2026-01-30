@@ -1,13 +1,18 @@
+// src/routes/order.routes.ts
 import { Router } from 'express';
 import { createOrder, getOrders, getOrderById, updateOrderStatus, } from '../controllers/order.controller.js';
-import { authMiddleware } from '../middleware/auth.middleware.js';
-import { adminMiddleware } from '../middleware/admin.middleware.js';
+import { protect, admin } from '../middleware/auth.middleware.js';
 const router = Router();
-// User routes
-router.post('/', authMiddleware, createOrder);
-router.get('/my-orders', authMiddleware, getOrders); // user's own orders
-// Admin routes
-router.get('/', authMiddleware, adminMiddleware, getOrders); // all orders
-router.get('/:id', authMiddleware, adminMiddleware, getOrderById);
-router.patch('/:id/status', authMiddleware, adminMiddleware, updateOrderStatus);
+/* ------------------------------ PUBLIC ROUTES ------------------------------ */
+// Create a new order
+router.post('/', createOrder);
+/* ------------------------------ ADMIN ROUTES ------------------------------- */
+// Protect all admin routes
+router.use(protect, admin);
+// Get all orders
+router.get('/', getOrders);
+// Get single order by ID
+router.get('/:id', getOrderById);
+// Update order status
+router.patch('/:id/status', updateOrderStatus);
 export default router;

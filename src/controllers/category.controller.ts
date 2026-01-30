@@ -1,6 +1,6 @@
 // src/controllers/category.controller.ts
 import { Request, Response } from 'express';
-import Category from '../models/Category.model';
+import Category from '../models/Category.model.js';
 
 /* ------------------------------ GET ALL CATEGORIES --------------------------- */
 export const getCategories = async (_req: Request, res: Response) => {

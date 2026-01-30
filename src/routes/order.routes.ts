@@ -5,8 +5,8 @@ import {
   getOrders,
   getOrderById,
   updateOrderStatus,
-} from '../controllers/order.controller';
-import { protect, admin } from '../middleware/auth.middleware';
+} from '../controllers/order.controller.js';
+import { protect, admin } from '../middleware/auth.middleware.js';
 
 const router = Router();
 

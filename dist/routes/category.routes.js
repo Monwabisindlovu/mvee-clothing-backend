@@ -1,13 +1,24 @@
+// src/routes/category.routes.ts
 import { Router } from 'express';
 import { getCategories, getCategoryById, createCategory, updateCategory, deleteCategory, } from '../controllers/category.controller.js';
-import { authMiddleware } from '../middleware/auth.middleware.js';
-import { adminMiddleware } from '../middleware/admin.middleware.js';
+import { protect, admin } from '../middleware/auth.middleware.js';
 const router = Router();
-// Public
+/* =========================
+   PUBLIC ROUTES
+========================= */
+// Get all categories
 router.get('/', getCategories);
+// Get single category by ID
 router.get('/:id', getCategoryById);
-// Admin only
-router.post('/', authMiddleware, adminMiddleware, createCategory);
-router.patch('/:id', authMiddleware, adminMiddleware, updateCategory);
-router.delete('/:id', authMiddleware, adminMiddleware, deleteCategory);
+/* =========================
+   ADMIN ROUTES
+========================= */
+// Protect everything below this line
+router.use(protect, admin);
+// Create category
+router.post('/', createCategory);
+// Update category
+router.put('/:id', updateCategory);
+// Delete category
+router.delete('/:id', deleteCategory);
 export default router;

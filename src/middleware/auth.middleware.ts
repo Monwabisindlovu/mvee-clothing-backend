@@ -1,8 +1,8 @@
 // src/middleware/auth.middleware.ts
 import { Request, Response, NextFunction } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import User, { IUser } from '../models/User.model';
-import { env } from '../config/env';
+import User, { IUser } from '../models/User.model.js';
+import { env } from '../config/env.js';
 
 /**
  * Extend Express Request to include authenticated user

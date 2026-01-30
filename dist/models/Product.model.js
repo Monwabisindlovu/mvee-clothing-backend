@@ -9,9 +9,15 @@ const productColorSchema = new Schema({
     hex: { type: String, required: true },
 }, { _id: false });
 const productSchema = new Schema({
-    type: { type: String, default: 'product' },
+    // ✅ Updated type field
+    type: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     name: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
+    short_description: { type: String },
     description: { type: String },
     price: { type: Number, required: true },
     original_price: { type: Number, default: null },

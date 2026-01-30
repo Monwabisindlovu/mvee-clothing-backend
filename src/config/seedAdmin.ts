@@ -1,5 +1,5 @@
 // src/config/seedAdmin.ts
-import User from '../models/User.model';
+import User from '../models/User.model.js';
 import bcrypt from 'bcryptjs';
 
 export const seedAdmin = async () => {

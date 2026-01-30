@@ -2,6 +2,7 @@
   "name": "mvee-clothing-backend",
   "version": "1.0.0",
   "description": "Backend API for MVEE Clothing ecommerce store",
+  "type": "module",
   "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/server.ts",

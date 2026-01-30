@@ -1,6 +1,6 @@
 // src/config/cloudinary.ts
 import { v2 as cloudinary, ConfigOptions } from 'cloudinary';
-import { env } from './env';
+import { env } from './env.js';
 
 // Validate required environment variables
 if (!env.CLOUDINARY_CLOUD_NAME || !env.CLOUDINARY_API_KEY || !env.CLOUDINARY_API_SECRET) {

@@ -1,6 +1,6 @@
 // src/controllers/product.controller.ts
 import { Request, Response } from 'express';
-import Product from '../models/Product.model';
+import Product from '../models/Product.model.js';
 import slugify from 'slugify';
 import { v4 as uuidv4 } from 'uuid';
 

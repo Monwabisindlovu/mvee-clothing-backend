@@ -6,8 +6,8 @@ import {
   createReview,
   updateReview,
   deleteReview,
-} from '../controllers/review.controller';
-import { protect, admin } from '../middleware/auth.middleware';
+} from '../controllers/review.controller.js';
+import { protect, admin } from '../middleware/auth.middleware.js';
 
 const router = Router();
 
