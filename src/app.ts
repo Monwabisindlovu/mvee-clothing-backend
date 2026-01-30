@@ -10,6 +10,7 @@ import orderRoutes from './routes/order.routes';
 import authRoutes from './routes/auth.routes';
 import reviewRoutes from './routes/review.routes';
 import categoryRoutes from './routes/category.routes';
+import uploadRoutes from './routes/upload.routes'; // <-- add this
 
 // Middleware
 import { errorHandler } from './middleware/error.middleware';
@@ -57,6 +58,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/upload', uploadRoutes); // <-- mount upload routes
 
 /* =========================
    ERROR HANDLER (MUST BE LAST)

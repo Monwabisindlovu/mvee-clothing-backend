@@ -1,0 +1,52 @@
+# ===============================
+# Environment variables
+# ===============================
+.env
+.env.local
+.env.*.local
+
+# ===============================
+# Node modules
+# ===============================
+node_modules/
+
+# ===============================
+# Build output
+# ===============================
+dist/
+build/
+
+# ===============================
+# Logs
+# ===============================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===============================
+# OS / Editor files
+# ===============================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ===============================
+# Sensitive scripts (admin / seeds)
+# ===============================
+deleteAdmin.ts
+seedAdmin.ts
+scripts/
+config/seedAdmin.ts
+
+# ===============================
+# Coverage / testing
+# ===============================
+coverage/
+
+# ===============================
+# Temporary files
+# ===============================
+*.tmp
+*.swp

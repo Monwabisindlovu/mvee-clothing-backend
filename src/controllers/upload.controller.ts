@@ -1,6 +1,9 @@
 import { Request, Response } from 'express';
 import cloudinary from '../config/cloudinary';
 
+/**
+ * Backend-handled upload: receives file via multer, uploads to Cloudinary
+ */
 export const uploadImage = async (req: Request, res: Response) => {
   try {
     if (!req.file) {
@@ -35,4 +38,24 @@ export const uploadImage = async (req: Request, res: Response) => {
       message: 'Image upload failed',
     });
   }
+};
+
+/**
+ * Signature generator: frontend calls this to get signed params for direct upload
+ */
+export const getSignature = async (req: Request, res: Response) => {
+  const timestamp = Math.round(new Date().getTime() / 1000);
+
+  // Generate signature for folder "products"
+  const signature = cloudinary.utils.api_sign_request(
+    { timestamp, folder: 'products' },
+    process.env.CLOUDINARY_API_SECRET!
+  );
+
+  res.json({
+    timestamp,
+    signature,
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+  });
 };
