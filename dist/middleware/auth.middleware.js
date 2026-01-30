@@ -1,10 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User.model.js';
 import { env } from '../config/env.js';
-/**
- * Middleware to protect routes
- * Verifies JWT and attaches user to request
- */
 export const protect = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
@@ -28,10 +24,6 @@ export const protect = async (req, res, next) => {
         return res.status(401).json({ message: 'Unauthorized: Invalid token' });
     }
 };
-/**
- * Middleware to allow only admin users
- * Use AFTER protect middleware
- */
 export const admin = (req, res, next) => {
     if (!req.user) {
         return res.status(401).json({ message: 'Unauthorized: Missing user' });
@@ -41,3 +33,4 @@ export const admin = (req, res, next) => {
     }
     next();
 };
+//# sourceMappingURL=auth.middleware.js.map

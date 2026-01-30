@@ -4,3 +4,4 @@ const CategorySchema = new Schema({
     slug: { type: String, required: true, unique: true },
 }, { timestamps: true });
 export default mongoose.model('Category', CategorySchema);
+//# sourceMappingURL=Category.model.js.map

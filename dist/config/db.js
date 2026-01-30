@@ -1,4 +1,3 @@
-// src/config/db.ts
 import mongoose from 'mongoose';
 import { env } from './env.js';
 export const connectDB = async () => {
@@ -8,7 +7,6 @@ export const connectDB = async () => {
     }
     try {
         await mongoose.connect(env.MONGO_URI, {
-            // optional options for better compatibility
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -19,3 +17,4 @@ export const connectDB = async () => {
         process.exit(1);
     }
 };
+//# sourceMappingURL=db.js.map

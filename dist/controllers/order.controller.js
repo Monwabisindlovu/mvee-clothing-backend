@@ -27,7 +27,6 @@ ${items.map((i) => `${i.name} x${i.quantity}`).join('\n')}`;
         res.status(500).json({ message: 'Failed to create order' });
     }
 };
-/* ------------------------------ GET ALL ORDERS (ADMIN) ---------------------- */
 export const getOrders = async (_req, res) => {
     try {
         const orders = await Order.find().sort({ created_at: -1 });
@@ -38,7 +37,6 @@ export const getOrders = async (_req, res) => {
         res.status(500).json({ message: 'Failed to fetch orders' });
     }
 };
-/* ------------------------------ GET ORDER BY ID (ADMIN) --------------------- */
 export const getOrderById = async (req, res) => {
     try {
         const order = await Order.findById(req.params.id);
@@ -53,7 +51,6 @@ export const getOrderById = async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch order' });
     }
 };
-/* ------------------------------ UPDATE ORDER STATUS (ADMIN) ----------------- */
 export const updateOrderStatus = async (req, res) => {
     try {
         const { status } = req.body;
@@ -69,3 +66,4 @@ export const updateOrderStatus = async (req, res) => {
         res.status(500).json({ message: 'Failed to update order status' });
     }
 };
+//# sourceMappingURL=order.controller.js.map

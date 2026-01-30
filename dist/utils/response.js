@@ -12,3 +12,4 @@ export const errorResponse = (res, message = 'Something went wrong', statusCode 
         errors: errors || null,
     });
 };
+//# sourceMappingURL=response.js.map

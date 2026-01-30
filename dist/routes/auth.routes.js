@@ -1,13 +1,9 @@
-// src/routes/auth.routes.ts
 import { Router } from 'express';
 import { login, me, registerAdmin } from '../controllers/auth.controller.js';
 import { protect } from '../middleware/auth.middleware.js';
 const router = Router();
-/* ------------------------------ AUTH ROUTES ------------------------------ */
-// Admin login
 router.post('/login', login);
-// Register a new admin (temporary)
 router.post('/register-admin', registerAdmin);
-// Get logged-in admin info
-router.get('/me', protect, me); // <-- updated
+router.get('/me', protect, me);
 export default router;
+//# sourceMappingURL=auth.routes.js.map

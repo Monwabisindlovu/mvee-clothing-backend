@@ -1,7 +1,3 @@
-/**
- * Global error-handling middleware
- * Must be registered LAST in app.ts
- */
 export const errorHandler = (err, _req, res, _next) => {
     const error = err;
     console.error('❌ Error caught:', error);
@@ -15,3 +11,4 @@ export const errorHandler = (err, _req, res, _next) => {
         timestamp: new Date().toISOString(),
     });
 };
+//# sourceMappingURL=error.middleware.js.map

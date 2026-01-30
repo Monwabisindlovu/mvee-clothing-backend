@@ -1,7 +1,5 @@
-// src/config/cloudinary.ts
 import { v2 as cloudinary } from 'cloudinary';
 import { env } from './env.js';
-// Validate required environment variables
 if (!env.CLOUDINARY_CLOUD_NAME || !env.CLOUDINARY_API_KEY || !env.CLOUDINARY_API_SECRET) {
     throw new Error('❌ Cloudinary environment variables are missing. Please check CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET.');
 }
@@ -13,3 +11,4 @@ const config = {
 };
 cloudinary.config(config);
 export default cloudinary;
+//# sourceMappingURL=cloudinary.js.map

@@ -1,5 +1,4 @@
 import Category from '../models/Category.model.js';
-/* ------------------------------ GET ALL CATEGORIES --------------------------- */
 export const getCategories = async (_req, res) => {
     try {
         const categories = await Category.find().sort({ name: 1 });
@@ -10,7 +9,6 @@ export const getCategories = async (_req, res) => {
         res.status(500).json({ message: 'Failed to get categories' });
     }
 };
-/* ------------------------------ GET CATEGORY BY ID --------------------------- */
 export const getCategoryById = async (req, res) => {
     try {
         const category = await Category.findById(req.params.id);
@@ -25,7 +23,6 @@ export const getCategoryById = async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch category' });
     }
 };
-/* ------------------------------ CREATE CATEGORY (ADMIN) ---------------------- */
 export const createCategory = async (req, res) => {
     try {
         const { name } = req.body;
@@ -42,7 +39,6 @@ export const createCategory = async (req, res) => {
         res.status(500).json({ message: 'Failed to create category' });
     }
 };
-/* ------------------------------ UPDATE CATEGORY (ADMIN) ---------------------- */
 export const updateCategory = async (req, res) => {
     try {
         const { name } = req.body;
@@ -58,7 +54,6 @@ export const updateCategory = async (req, res) => {
         res.status(500).json({ message: 'Failed to update category' });
     }
 };
-/* ------------------------------ DELETE CATEGORY (ADMIN) ---------------------- */
 export const deleteCategory = async (req, res) => {
     try {
         const category = await Category.findByIdAndDelete(req.params.id);
@@ -73,3 +68,4 @@ export const deleteCategory = async (req, res) => {
         res.status(500).json({ message: 'Failed to delete category' });
     }
 };
+//# sourceMappingURL=category.controller.js.map

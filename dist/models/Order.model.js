@@ -12,3 +12,4 @@ const OrderSchema = new Schema({
     totalPrice: { type: Number, required: true },
 }, { timestamps: true });
 export default mongoose.model('Order', OrderSchema);
+//# sourceMappingURL=Order.model.js.map

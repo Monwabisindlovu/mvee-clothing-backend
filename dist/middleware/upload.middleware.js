@@ -1,6 +1,4 @@
 import multer from 'multer';
-// Use memory storage so files are kept in memory buffer
-// and can be uploaded directly to Cloudinary in the controller
 const storage = multer.memoryStorage();
 const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
 const fileFilter = (_req, file, cb) => {
@@ -14,8 +12,9 @@ const fileFilter = (_req, file, cb) => {
 const upload = multer({
     storage,
     limits: {
-        fileSize: 5 * 1024 * 1024, // 5 MB max per file
+        fileSize: 5 * 1024 * 1024,
     },
     fileFilter,
 });
 export default upload;
+//# sourceMappingURL=upload.middleware.js.map

@@ -6,3 +6,4 @@ const ReviewSchema = new Schema({
     comment: { type: String },
 }, { timestamps: true });
 export default mongoose.model('Review', ReviewSchema);
+//# sourceMappingURL=Review.model.js.map

@@ -1,5 +1,4 @@
 import Review from '../models/Review.model.js';
-/* ---------------- CREATE REVIEW ---------------- */
 export const createReview = async (req, res) => {
     try {
         const review = await Review.create(req.body);
@@ -10,7 +9,6 @@ export const createReview = async (req, res) => {
         res.status(500).json({ message: 'Failed to create review' });
     }
 };
-/* ---------------- GET ALL REVIEWS ---------------- */
 export const getReviews = async (_req, res) => {
     try {
         const reviews = await Review.find().sort({ createdAt: -1 });
@@ -21,7 +19,6 @@ export const getReviews = async (_req, res) => {
         res.status(500).json({ message: 'Failed to fetch reviews' });
     }
 };
-/* ---------------- GET REVIEW BY ID ---------------- */
 export const getReviewById = async (req, res) => {
     try {
         const review = await Review.findById(req.params.id);
@@ -35,7 +32,6 @@ export const getReviewById = async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch review' });
     }
 };
-/* -------------- GET REVIEWS BY PRODUCT ------------ */
 export const getReviewsByProduct = async (req, res) => {
     try {
         const reviews = await Review.find({
@@ -48,7 +44,6 @@ export const getReviewsByProduct = async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch product reviews' });
     }
 };
-/* ---------------- UPDATE REVIEW (ADMIN) ---------------- */
 export const updateReview = async (req, res) => {
     try {
         const review = await Review.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -62,7 +57,6 @@ export const updateReview = async (req, res) => {
         res.status(500).json({ message: 'Failed to update review' });
     }
 };
-/* ---------------- DELETE REVIEW (ADMIN) ---------------- */
 export const deleteReview = async (req, res) => {
     try {
         const review = await Review.findByIdAndDelete(req.params.id);
@@ -76,3 +70,4 @@ export const deleteReview = async (req, res) => {
         res.status(500).json({ message: 'Failed to delete review' });
     }
 };
+//# sourceMappingURL=review.controller.js.map

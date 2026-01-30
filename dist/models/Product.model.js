@@ -9,7 +9,6 @@ const productColorSchema = new Schema({
     hex: { type: String, required: true },
 }, { _id: false });
 const productSchema = new Schema({
-    // ✅ Updated type field
     type: {
         type: String,
         required: true,
@@ -34,3 +33,4 @@ const productSchema = new Schema({
     updated_at: { type: Date, default: Date.now },
 }, { timestamps: true });
 export default model('Product', productSchema);
+//# sourceMappingURL=Product.model.js.map
