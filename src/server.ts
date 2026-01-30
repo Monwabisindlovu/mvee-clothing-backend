@@ -14,8 +14,12 @@ const startServer = async () => {
 
     // Seed admin only in non-production environments using lazy import
     if (process.env.NODE_ENV !== 'production') {
-      const { seedAdmin } = await import('./config/seedAdmin.js');
-      await seedAdmin();
+      try {
+        const { seedAdmin } = await import('./config/seedAdmin.js');
+        await seedAdmin();
+      } catch (err) {
+        console.warn('⚠️ seedAdmin.js not found or failed to run, skipping admin seeding');
+      }
     }
 
     // Start Express server
