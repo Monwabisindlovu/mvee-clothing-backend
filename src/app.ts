@@ -5,9 +5,9 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 
 // Routes
+import authRoutes from './routes/auth.routes.js';
 import productRoutes from './routes/product.routes.js';
 import orderRoutes from './routes/order.routes.js';
-import authRoutes from './routes/auth.routes.js';
 import reviewRoutes from './routes/review.routes.js';
 import categoryRoutes from './routes/category.routes.js';
 import uploadRoutes from './routes/upload.routes.js';
