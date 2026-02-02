@@ -1,6 +1,6 @@
 // src/middleware/admin.middleware.ts
 import { Request, Response, NextFunction } from 'express';
-import { AuthRequest } from './auth.middleware';
+import { AuthRequest } from './auth.middleware.js';
 
 export const adminMiddleware = (req: AuthRequest, res: Response, next: NextFunction) => {
   // Check role instead of isAdmin
